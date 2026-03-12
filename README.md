@@ -1,17 +1,50 @@
-# fluxstore
+# Fluxstore
 
-A new Flutter project.
+A high-performance Flutter e-commerce application.
+
+## Features
+
+- **Modern UI**: Clean and intuitive design following the latest e-commerce trends.
+- **State Management**: Built with Flutter BLoC for reliable and scalable state management.
+- **CLI Tool**: Includes a command-line tool for project information and management.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Installation
 
-A few resources to get you started if this is your first Flutter project:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/dartforgeyash/fluxstore.git
+   ```
+2. Install dependencies:
+   ```bash
+   flutter pub get
+   ```
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+### Running the App
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter run
+```
+
+## CLI Tool
+
+The project includes a CLI tool located in `bin/fluxstore.dart`.
+
+### Activation
+
+To use the `fluxstore` command globally, run:
+```bash
+dart pub global activate --source path .
+```
+
+### Usage
+
+```bash
+fluxstore version
+fluxstore info
+```
+
+## Repository
+
+The project is hosted on GitHub: [dartforgeyash/fluxstore](https://github.com/dartforgeyash/fluxstore)
