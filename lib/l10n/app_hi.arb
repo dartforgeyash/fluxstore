@@ -1,0 +1,14 @@
+{
+  "helloWorld": "नमस्ते दुनिया",
+  "appName": "ट्रांसपोर्ट ऐप",
+  "welcomeUser": "आपका स्वागत है, {name}",
+  "selectLanguage": "भाषा चुनें",
+  "@welcomeUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "somethingWentWrong": "कुछ गलत हो गया"
+}

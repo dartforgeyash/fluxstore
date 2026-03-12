@@ -1,0 +1,20 @@
+{
+  "helloWorld": "Hello World",
+  "appName": "Transport App",
+  "welcomeUser": "Welcome, {name}",
+  "@welcomeUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "somethingWentWrong": "Something went wrong",
+  "selectLanguage": "Select Language",
+  "welcome": "Welcome",
+  "backFriend": "Back, friend",
+  "signIn": "SIGN IN",
+  "loginButton": "LOG IN",
+  "errorInvalidCredentials": "Invalid credential",
+  "loginSuccessMessage": "Logged in successfully"
+  }
