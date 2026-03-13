@@ -1,0 +1,54 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+          channel: 'stable'
+          cache: true
+
+      - name: Verify Flutter Installation
+        run: flutter doctor -v
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.pub-cache
+            build
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Check Code Formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze Project
+        run: flutter analyze
+
+      - name: Run Tests
+        run: flutter test
+
+      - name: Build Android APK
+        run: flutter build apk --release
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fluxstore-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
