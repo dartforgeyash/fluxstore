@@ -290,7 +290,7 @@ class _CategoryRow extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         physics: const BouncingScrollPhysics(),
         itemCount: categories.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 10),
+        separatorBuilder: (_, _) => const SizedBox(width: 10),
         itemBuilder: (_, i) {
           final cat = categories[i];
           final isSelected = cat == selected;
@@ -395,7 +395,7 @@ class _HotTopicsCarousel extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         physics: const BouncingScrollPhysics(),
         itemCount: topics.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 12),
+        separatorBuilder: (_, _) => const SizedBox(width: 12),
         itemBuilder: (_, i) =>
             _HotTopicCard(topic: topics[i], onTap: () => onTap(topics[i])),
       ),
@@ -424,7 +424,7 @@ class _HotTopicCard extends StatelessWidget {
               width: width,
               height: 180,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Container(
+              errorBuilder: (_, _, _) => Container(
                 width: width,
                 height: 180,
                 color: const Color(0xFFEDD0E0),
@@ -587,7 +587,7 @@ class _CyclePhaseList extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 16),
       itemCount: phases.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 10),
+      separatorBuilder: (_, _) => const SizedBox(height: 10),
       itemBuilder: (_, i) => _CyclePhaseItem(phase: phases[i]),
     );
   }

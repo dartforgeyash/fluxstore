@@ -33,7 +33,6 @@ class AppTheme {
         seedColor: AppColors.primary,
         brightness: Brightness.light,
         onSurface: Colors.black,
-        onBackground: Colors.black,
       ),
       textTheme:
           TextTheme(

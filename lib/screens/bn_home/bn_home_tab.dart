@@ -378,7 +378,7 @@ class _MoodSelectorRow extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         physics: const BouncingScrollPhysics(),
         itemCount: moods.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 10),
+        separatorBuilder: (_, _) => const SizedBox(width: 10),
         itemBuilder: (_, index) {
           final mood = moods[index];
           return MoodSelectorItem(

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluxstore/constant/colors.dart';
@@ -20,7 +22,7 @@ class ThemeBloc extends Cubit<ThemeData> with WidgetsBindingObserver {
   @override
   void didChangePlatformBrightness() {
     if (_currentPreference == ThemePreference.system) {
-      final brightness = WidgetsBinding.instance.window.platformBrightness;
+      final brightness = PlatformDispatcher.instance.platformBrightness;
       final theme = brightness == Brightness.dark
           ? AppThemes.darkTheme
           : AppThemes.lightTheme;
@@ -57,7 +59,7 @@ class ThemeBloc extends Cubit<ThemeData> with WidgetsBindingObserver {
       case ThemePreference.dark:
         return AppThemes.darkTheme;
       case ThemePreference.system:
-        final brightness = WidgetsBinding.instance.window.platformBrightness;
+        final brightness = PlatformDispatcher.instance.platformBrightness;
         return brightness == Brightness.dark
             ? AppThemes.darkTheme
             : AppThemes.lightTheme;
