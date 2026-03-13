@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluxstore/constant/images.dart';
 import 'package:fluxstore/screens/bn_insights/model/insights_models.dart';
 
 part 'bn_insights_event.dart';
@@ -48,14 +49,13 @@ class InsightsBloc extends Bloc<InsightsEvent, InsightsState> {
     ),
   ];
 
-  static const List<TipCardModel> _tips = [
+  static final List<TipCardModel> _tips = [
     TipCardModel(
       id: 'tip_1',
       title: 'Connect with doctors & get suggestions',
       description: 'Connect now and get expert insights',
       actionLabel: 'View detail',
-      imageUrl:
-          'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200',
+      imageUrl: AppImages.doctorImage // 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200',
     ),
   ];
 

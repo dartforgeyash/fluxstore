@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluxstore/constant/colors.dart';
+import 'package:fluxstore/core/extensions/app_extensions.dart';
 import 'package:fluxstore/routes/app_routes.dart';
 import 'package:fluxstore/screens/bn_insights/bloc/bn_insights_bloc.dart';
 import 'package:fluxstore/screens/bn_insights/model/insights_models.dart';
+import 'package:fluxstore/widget/common_image_view.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Screen
@@ -44,14 +46,13 @@ class _InsightsTabState extends State<InsightsTab> {
         listenWhen: (_, current) => current is InsightsNavigateTo,
         listener: (context, state) {
           if (state is InsightsNavigateTo) {
-            Navigator.of(context).pushNamed(
-              state.route,
-              arguments: state.arguments,
-            );
+            Navigator.of(
+              context,
+            ).pushNamed(state.route, arguments: state.arguments);
           }
         },
         buildWhen: (_, current) =>
-        current is InsightsLoading ||
+            current is InsightsLoading ||
             current is InsightsLoaded ||
             current is InsightsError,
         builder: (context, state) {
@@ -97,8 +98,7 @@ class _InsightsTabState extends State<InsightsTab> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: _SearchBar(
                 controller: _searchCtrl,
-                onChanged: (q) =>
-                    bloc.add(InsightsSearchChanged(q)),
+                onChanged: (q) => bloc.add(InsightsSearchChanged(q)),
               ),
             ),
             const SizedBox(height: 16),
@@ -122,15 +122,13 @@ class _InsightsTabState extends State<InsightsTab> {
                     _SectionHeader(
                       title: 'Hot topics',
                       onSeeAll: () => bloc.add(
-                        InsightsSeeAllTapped(
-                            AppRoutes.hotTopicsSeeAll),
+                        InsightsSeeAllTapped(AppRoutes.hotTopicsSeeAll),
                       ),
                     ),
                     const SizedBox(height: 12),
                     _HotTopicsCarousel(
                       topics: state.hotTopics,
-                      onTap: (t) =>
-                          bloc.add(InsightsHotTopicTapped(t)),
+                      onTap: (t) => bloc.add(InsightsHotTopicTapped(t)),
                     ),
                     const SizedBox(height: 24),
 
@@ -148,9 +146,8 @@ class _InsightsTabState extends State<InsightsTab> {
                     ),
                     const SizedBox(height: 12),
                     ...state.tips.map(
-                          (tip) => Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16),
+                      (tip) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: _TipCard(
                           tip: tip,
                           onAction: () =>
@@ -164,8 +161,7 @@ class _InsightsTabState extends State<InsightsTab> {
                     _SectionHeader(
                       title: 'Cycle Phases and Period',
                       onSeeAll: () => bloc.add(
-                        InsightsSeeAllTapped(
-                            AppRoutes.cyclePhaseSeeAll),
+                        InsightsSeeAllTapped(AppRoutes.cyclePhaseSeeAll),
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -174,13 +170,6 @@ class _InsightsTabState extends State<InsightsTab> {
                   ],
                 ),
               ),
-            ),
-
-            // ── Bottom nav ───────────────────────────────────────────────────
-            _BottomNavBar(
-              currentIndex: state.currentNavIndex,
-              onTap: (i) =>
-                  bloc.add(InsightsBottomNavTapped(i)),
             ),
           ],
         ),
@@ -243,10 +232,7 @@ class _AliceCareAppBar extends StatelessWidget {
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _SearchBar extends StatelessWidget {
-  const _SearchBar({
-    required this.controller,
-    required this.onChanged,
-  });
+  const _SearchBar({required this.controller, required this.onChanged});
 
   final TextEditingController controller;
   final ValueChanged<String> onChanged;
@@ -266,18 +252,14 @@ class _SearchBar extends StatelessWidget {
         style: const TextStyle(fontSize: 14, color: AppColors.textDark),
         decoration: InputDecoration(
           hintText: 'Articles, Video, Audio and More,...',
-          hintStyle: const TextStyle(
-            fontSize: 13,
-            color: AppColors.textDark,
-          ),
+          hintStyle: const TextStyle(fontSize: 13, color: AppColors.textDark),
           prefixIcon: const Icon(
             Icons.search_rounded,
             color: AppColors.textDark,
             size: 20,
           ),
           border: InputBorder.none,
-          contentPadding:
-          const EdgeInsets.symmetric(vertical: 13),
+          contentPadding: const EdgeInsets.symmetric(vertical: 13),
         ),
       ),
     );
@@ -316,13 +298,14 @@ class _CategoryRow extends StatelessWidget {
             onTap: () => onTap(cat),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              padding:
-              const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
               decoration: BoxDecoration(
                 color: isSelected ? AppColors.purple : AppColors.white,
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                  color: isSelected ? AppColors.purple : const Color(0xFFDDDDEE),
+                  color: isSelected
+                      ? AppColors.purple
+                      : const Color(0xFFDDDDEE),
                 ),
               ),
               child: Text(
@@ -379,8 +362,11 @@ class _SectionHeader extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 2),
-                Icon(Icons.chevron_right_rounded,
-                    color: AppColors.purple, size: 18),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  color: AppColors.purple,
+                  size: 18,
+                ),
               ],
             ),
           ),
@@ -395,10 +381,7 @@ class _SectionHeader extends StatelessWidget {
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _HotTopicsCarousel extends StatelessWidget {
-  const _HotTopicsCarousel({
-    required this.topics,
-    required this.onTap,
-  });
+  const _HotTopicsCarousel({required this.topics, required this.onTap});
 
   final List<HotTopicModel> topics;
   final ValueChanged<HotTopicModel> onTap;
@@ -413,10 +396,8 @@ class _HotTopicsCarousel extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: topics.length,
         separatorBuilder: (_, __) => const SizedBox(width: 12),
-        itemBuilder: (_, i) => _HotTopicCard(
-          topic: topics[i],
-          onTap: () => onTap(topics[i]),
-        ),
+        itemBuilder: (_, i) =>
+            _HotTopicCard(topic: topics[i], onTap: () => onTap(topics[i])),
       ),
     );
   }
@@ -447,8 +428,11 @@ class _HotTopicCard extends StatelessWidget {
                 width: width,
                 height: 180,
                 color: const Color(0xFFEDD0E0),
-                child: const Icon(Icons.image_not_supported_outlined,
-                    color: AppColors.purple, size: 40),
+                child: const Icon(
+                  Icons.image_not_supported_outlined,
+                  color: AppColors.purple,
+                  size: 40,
+                ),
               ),
             ),
             // Gradient overlay
@@ -458,10 +442,7 @@ class _HotTopicCard extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.transparent,
-                      Colors.black.withOpacity(0.5),
-                    ],
+                    colors: [Colors.transparent, Colors.black.withOpacity(0.5)],
                     stops: const [0.5, 1.0],
                   ),
                 ),
@@ -502,7 +483,7 @@ class _TipCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.grey,
+        color: AppColors.lightGrey,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
@@ -514,17 +495,20 @@ class _TipCard extends StatelessWidget {
               bottomLeft: Radius.circular(16),
               topLeft: Radius.circular(16),
             ),
-            child: Image.network(
-              tip.imageUrl,
+            child: CommonImageView(
+              imagePath: tip.imageUrl,
+              source: ImageSource.asset,
               width: 110,
-              height: 140,
-              fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Container(
+              height: 150,
+              placeholder: Container(
                 width: 110,
-                height: 140,
+                height: 150,
                 color: const Color(0xFFE8DEF8),
-                child: const Icon(Icons.person_outline_rounded,
-                    color: AppColors.purple, size: 48),
+                child: const Icon(
+                  Icons.person_outline_rounded,
+                  color: AppColors.purple,
+                  size: 48,
+                ),
               ),
             ),
           ),
@@ -532,9 +516,10 @@ class _TipCard extends StatelessWidget {
           // Content
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(14, 20, 14, 20),
+              padding: 15.vh(14),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     tip.title,
@@ -559,7 +544,9 @@ class _TipCard extends StatelessWidget {
                     onTap: onAction,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 18, vertical: 9),
+                        horizontal: 18,
+                        vertical: 9,
+                      ),
                       decoration: BoxDecoration(
                         color: AppColors.purple,
                         borderRadius: BorderRadius.circular(22),
@@ -616,7 +603,7 @@ class _CyclePhaseItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
       decoration: BoxDecoration(
-        color: AppColors.grey,
+        color: AppColors.lightGrey,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -628,8 +615,11 @@ class _CyclePhaseItem extends StatelessWidget {
               color: AppColors.purpleLight,
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.favorite_border_rounded,
-                color: AppColors.purple, size: 20),
+            child: const Icon(
+              Icons.favorite_border_rounded,
+              color: AppColors.purple,
+              size: 20,
+            ),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -656,132 +646,12 @@ class _CyclePhaseItem extends StatelessWidget {
               ],
             ),
           ),
-          const Icon(Icons.chevron_right_rounded,
-              color: AppColors.textDark, size: 20),
-        ],
-      ),
-    );
-  }
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Bottom Navigation Bar
-// ─────────────────────────────────────────────────────────────────────────────
-
-class _BottomNavBar extends StatelessWidget {
-  const _BottomNavBar({
-    required this.currentIndex,
-    required this.onTap,
-  });
-
-  final int currentIndex;
-  final ValueChanged<int> onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.07),
-            blurRadius: 16,
-            offset: const Offset(0, -4),
+          const Icon(
+            Icons.chevron_right_rounded,
+            color: AppColors.textDark,
+            size: 20,
           ),
         ],
-      ),
-      padding: EdgeInsets.only(
-        top: 10,
-        bottom: MediaQuery.of(context).padding.bottom + 10,
-        left: 8,
-        right: 8,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _NavItem(
-            icon: Icons.home_outlined,
-            activeIcon: Icons.home_rounded,
-            index: 0,
-            currentIndex: currentIndex,
-            onTap: onTap,
-          ),
-          _NavItem(
-            icon: Icons.grid_view_outlined,
-            activeIcon: Icons.grid_view_rounded,
-            index: 1,
-            currentIndex: currentIndex,
-            onTap: onTap,
-            showDot: true,
-          ),
-          _NavItem(
-            icon: Icons.bar_chart_outlined,
-            activeIcon: Icons.bar_chart_rounded,
-            index: 2,
-            currentIndex: currentIndex,
-            onTap: onTap,
-          ),
-          _NavItem(
-            icon: Icons.person_outline_rounded,
-            activeIcon: Icons.person_rounded,
-            index: 3,
-            currentIndex: currentIndex,
-            onTap: onTap,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _NavItem extends StatelessWidget {
-  const _NavItem({
-    required this.icon,
-    required this.activeIcon,
-    required this.index,
-    required this.currentIndex,
-    required this.onTap,
-    this.showDot = false,
-  });
-
-  final IconData icon;
-  final IconData activeIcon;
-  final int index;
-  final int currentIndex;
-  final ValueChanged<int> onTap;
-  final bool showDot;
-
-  @override
-  Widget build(BuildContext context) {
-    final isSelected = index == currentIndex;
-    return GestureDetector(
-      onTap: () => onTap(index),
-      behavior: HitTestBehavior.opaque,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-        child: Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.center,
-          children: [
-            Icon(
-              isSelected ? activeIcon : icon,
-              color: isSelected ? AppColors.purple : AppColors.textDark,
-              size: 26,
-            ),
-            if (showDot && isSelected)
-              Positioned(
-                bottom: -6,
-                child: Container(
-                  width: 5,
-                  height: 5,
-                  decoration: const BoxDecoration(
-                    color: AppColors.purple,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ),
-          ],
-        ),
       ),
     );
   }

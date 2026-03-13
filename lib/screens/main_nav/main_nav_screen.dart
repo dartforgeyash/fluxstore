@@ -29,8 +29,8 @@ class _MainNavScreenState extends State<MainNavScreen> {
 
   final List<WidgetBuilder> _tabs = [
     HomeTab.builder,
-    ActivitiesTab.builder,
     InsightsTab.builder,
+    ActivitiesTab.builder,
     MyAccountTab.builder,
   ];
 
