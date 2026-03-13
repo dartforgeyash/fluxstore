@@ -31,7 +31,7 @@ class MoodSelectorItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         decoration: BoxDecoration(
           color: isSelected
-              ? const Color(0xFF4CAF82).withOpacity(0.12)
+              ? const Color(0xFF4CAF82).withValues(alpha: 0.12)
               : Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
@@ -43,14 +43,14 @@ class MoodSelectorItem extends StatelessWidget {
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: const Color(0xFF4CAF82).withOpacity(0.18),
+                    color: const Color(0xFF4CAF82).withValues(alpha: 0.18),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
                 ]
               : [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.04),
+                    color: Colors.black.withValues(alpha: 0.04),
                     blurRadius: 6,
                     offset: const Offset(0, 2),
                   ),

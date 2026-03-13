@@ -246,7 +246,7 @@ class _HomeAppBar extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.07),
+                    color: Colors.black.withValues(alpha: 0.07),
                     blurRadius: 8.rx,
                     offset: const Offset(0, 2),
                   ),

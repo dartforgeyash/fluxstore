@@ -29,7 +29,7 @@ class FeaturedSessionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(24.rx),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF4CAF82).withOpacity(0.35),
+            color: const Color(0xFF4CAF82).withValues(alpha: 0.35),
             blurRadius: 18.rx,
             offset: const Offset(0, 8),
           ),
@@ -46,7 +46,7 @@ class FeaturedSessionCard extends StatelessWidget {
               height: 120.wx,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.06),
+                color: Colors.white.withValues(alpha: 0.06),
               ),
             ),
           ),
@@ -58,7 +58,7 @@ class FeaturedSessionCard extends StatelessWidget {
               height: 90.wx,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.06),
+                color: Colors.white.withValues(alpha: 0.06),
               ),
             ),
           ),
@@ -88,7 +88,7 @@ class FeaturedSessionCard extends StatelessWidget {
                         session.description,
                         style: TextStyle(
                           fontSize: 12.spx,
-                          color: Colors.white.withOpacity(0.80),
+                          color: Colors.white.withValues(alpha: 0.80),
                           height: 1.4,
                         ),
                       ),
@@ -115,7 +115,7 @@ class FeaturedSessionCard extends StatelessWidget {
                           Container(
                             padding: 5.vh(10),
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.15),
+                              color: Colors.white.withValues(alpha: 0.15),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Row(
@@ -124,14 +124,14 @@ class FeaturedSessionCard extends StatelessWidget {
                                 Icon(
                                   Icons.access_time_rounded,
                                   size: 12,
-                                  color: Colors.white.withOpacity(0.9),
+                                  color: Colors.white.withValues(alpha: 0.9),
                                 ),
                                 const SizedBox(width: 4),
                                 Text(
                                   session.duration,
                                   style: TextStyle(
                                     fontSize: 12.spx,
-                                    color: Colors.white.withOpacity(0.9),
+                                    color: Colors.white.withValues(alpha: 0.9),
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
